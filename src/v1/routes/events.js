@@ -1,6 +1,3 @@
-/**
- * Host + /events
- */
 const express = require('express')
 const { validateJWT } = require('../../middlewares/validateJWT')
 const {

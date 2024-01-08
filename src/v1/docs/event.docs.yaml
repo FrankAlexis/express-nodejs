@@ -1,0 +1,77 @@
+openapi: 3.0.0
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/FRANK_17/Events/1.0.0
+info:
+  description: This is a simple API
+  version: "1.0.0"
+  title: Simple Inventory API
+  contact:
+    email: you@your-company.com
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: admins
+    description: Secured Admin-only calls
+  - name: developers
+    description: Operations available to regular developers
+paths:
+    /api/v1/events
+      get:
+        summary: Get all events
+        produces:
+          - application/json
+        responses:
+          200:
+            description: Returns all the events.
+            schema:
+            type: json
+      post:
+        summary: Create a new event
+        produces:
+          - application/json
+        requestBody:
+          required: true
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Event'
+        responses:
+          200:
+            description: The created event.
+            content:
+              application/json:
+                schema:
+                  $ref: '#/components/schemas/Event'
+          500:
+            description: Some server error
+components:
+  schemas:
+    Event:
+      type: object
+      required:
+        - title
+        - startDate
+        - endDate
+      properties:
+        title:
+          type: string
+          description: The title of your event
+        notes:
+          type: string
+          description: Additional information about the event
+        startDate:
+          type: string
+          format: date
+          description: The start date of your event
+        endDate:
+          type: string
+          format: date
+          description: The end date of your event
+      example:
+        title: The New Turing Omnibus
+        notes: Alexander K. Dewdney
+        startDate: 2024/12/28
+        endDate: 2024/12/28
