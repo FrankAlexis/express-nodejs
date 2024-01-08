@@ -1,6 +1,5 @@
 const User = require('../models/User.model')
 const { encrypt, decrypt } = require('../helpers/encrypt')
-const { decryptJWT } = require('../helpers/jwt')
 
 class AuthService {
   async checkUserCreated(email) {

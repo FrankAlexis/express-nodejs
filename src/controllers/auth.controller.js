@@ -45,7 +45,7 @@ const login = async function (req = request, res = response) {
     }
 
     const { id, name } = resp
-    const token = await generateJWT({ id, name })
+    const token = generateJWT({ id, name })
 
     res.status(OK).json({
       id: resp.id,
@@ -59,9 +59,9 @@ const login = async function (req = request, res = response) {
   }
 }
 
-const validateToken = async function (req, res = response) {
+const validateToken = (req, res = response) => {
   const { id, name } = req
-  const token = await generateJWT({ id, name })
+  const token = generateJWT({ id, name })
 
   res.status(OK).json({
     token,

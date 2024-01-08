@@ -1,12 +1,13 @@
 const { response } = require('express')
-const jwt = require('jsonwebtoken')
 const {
   UNAUTHORIZED,
   INTERNAL_SERVER_ERROR,
 } = require('../helpers/statusCodes')
+const { verifyJWT } = require('../helpers/jwt')
 
-const validateJWT = (req, res = response, next) => {
+const validateJWT = async (req, res = response, next) => {
   const token = req.header('x-token')
+
   if (!token) {
     return res.status(UNAUTHORIZED).json({
       message: 'Invalid token',
@@ -14,15 +15,14 @@ const validateJWT = (req, res = response, next) => {
   }
 
   try {
-    const seed = process.env.SECRET_JWT_SEED
-    const { id, name } = jwt.verify(token, seed)
+    const { id, name } = await verifyJWT(token)
 
     req.id = id
     req.name = name
     next()
   } catch (err) {
-    return res.status(INTERNAL_SERVER_ERROR).json({
-      message: 'Error generating token',
+    return res.status(UNAUTHORIZED).json({
+      message: 'Invalid token',
     })
   }
 }
