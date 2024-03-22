@@ -1,10 +1,14 @@
 #!/usr/bin/env node
 const handle404Error = require('./middlewares/handle404Error')
+const { dbConnection } = require('./database/config')
 const cookieParser = require('cookie-parser')
 const express = require('express')
 const cors = require('cors')
+const http = require('http')
 
 require('dotenv').config()
+
+dbConnection()
 
 const app = express()
 app.use(express.json())
@@ -18,4 +22,6 @@ app.use(cookieParser())
 app.use(handle404Error)
 app.use(cors())
 
-module.exports = app
+// Server
+const server = http.createServer(app)
+server.listen(process.env.PORT || '4000')

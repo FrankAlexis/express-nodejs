@@ -4,10 +4,10 @@ const log = require('../helpers/debug')
 
 const dbConnection = async () => {
   try {
-    await connect(process.env.DB_CONNECTION)
+    //await connect(process.env.DB_CONNECTION)
   } catch (error) {
     log(error)
-    throw new Error(MESSAGES.dbConnectionError)
+    //throw new Error(MESSAGES.dbConnectionError)
   }
 }
 

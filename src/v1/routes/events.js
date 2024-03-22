@@ -10,12 +10,12 @@ const {
 const eventsValidator = require('../../validators/events.validators')
 const router = express.Router()
 
-router.use(validateJWT)
-
-router.get('/', getEvents)
-router.get('/:id', getOneEvent)
-router.delete('/:id', deleteOneEvent)
-router.put('/:id', updateOneEvent)
-router.post('/', eventsValidator.eventChain, createOneEvent)
+router
+  .use(validateJWT)
+  .get('/', getEvents)
+  .get('/:id', getOneEvent)
+  .delete('/:id', deleteOneEvent)
+  .put('/:id', updateOneEvent)
+  .post('/', eventsValidator.eventChain, createOneEvent)
 
 module.exports = router

@@ -11,8 +11,9 @@ const {
 const { validateJWT } = require('../../middlewares/validateJWT')
 const authValidator = require('../../validators/auth.validators')
 
-router.post('/new', authValidator.userChain, createUser)
-router.post('/login', authValidator.userChain, login)
-router.get('/renew', validateJWT, validateToken)
+router
+  .post('/new', authValidator.userChain, createUser)
+  .post('/login', authValidator.userChain, login)
+  .get('/renew', validateJWT, validateToken)
 
 module.exports = router

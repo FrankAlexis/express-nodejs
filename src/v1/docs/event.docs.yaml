@@ -18,35 +18,35 @@ tags:
   - name: developers
     description: Operations available to regular developers
 paths:
-    /api/v1/events
-      get:
-        summary: Get all events
-        produces:
-          - application/json
-        responses:
-          200:
-            description: Returns all the events.
+  /api/v1/events
+    get:
+      summary: Get all events
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Returns all the events.
+          schema:
+          type: json
+    post:
+      summary: Create a new event
+      produces:
+        - application/json
+      requestBody:
+        required: true
+        content:
+          application/json:
             schema:
-            type: json
-      post:
-        summary: Create a new event
-        produces:
-          - application/json
-        requestBody:
-          required: true
+              $ref: '#/components/schemas/Event'
+      responses:
+        200:
+          description: The created event.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/Event'
-        responses:
-          200:
-            description: The created event.
-            content:
-              application/json:
-                schema:
-                  $ref: '#/components/schemas/Event'
-          500:
-            description: Some server error
+        500:
+          description: Some server error
 components:
   schemas:
     Event:

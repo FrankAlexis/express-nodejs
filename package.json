@@ -3,22 +3,26 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "set DEBUG=express:router & nodemon ./src/app.js"
+    "start": "set DEBUG=express:router & nodemon ./src/server.js",
+    "local": "nodemon scripts/local"
   },
   "dependencies": {
     "bcrypt": "^5.1.1",
     "cookie-parser": "~1.4.4",
     "cors": "^2.8.5",
+    "cross-var": "^1.1.0",
     "dayjs": "^1.11.10",
     "debug": "^4.3.4",
     "dotenv": "^16.3.1",
-    "express": "~4.16.1",
+    "express": "^4.18.2",
     "express-validator": "^7.0.1",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.0.3"
+    "mongoose": "^8.0.3",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2",
+    "prettier": "3.1.1",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.0"
   }
